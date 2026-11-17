@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Bejelentkezés')}"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<nav th:replace="~{fragments :: nav('login')}"></nav>
+<header th:replace="~{fragments :: pageheader('Bejelentkezés')}"></header>
+
+<main class="container py-5 flex-grow-1">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-5">
+            <div th:if="${param.registered}" class="alert alert-success">Sikeres regisztráció! Most már bejelentkezhetsz.</div>
+            <div th:if="${param.error}" class="alert alert-danger">Hibás felhasználónév vagy jelszó!</div>
+            <form th:action="@{/login}" method="post">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Felhasználónév" required>
+                    <label for="username">Felhasználónév</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Jelszó" required>
+                    <label for="password">Jelszó</label>
+                </div>
+                <button class="btn btn-primary w-100 py-3" type="submit">Bejelentkezés</button>
+            </form>
+            <p class="text-center mt-3 mb-0">Még nincs fiókod? <a th:href="@{/register}">Regisztrálj!</a></p>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{fragments :: footer}"></div>
+<th:block th:replace="~{fragments :: scripts}"></th:block>
+</body>
+</html>
