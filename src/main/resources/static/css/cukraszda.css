@@ -1,0 +1,158 @@
+
+:root {
+    --cukor-csoki: #4a2c2a;
+    --cukor-csoki-vilagos: #6b3f3a;
+    --cukor-rozsa: #d6336c;
+    --cukor-rozsa-sotet: #b02a5b;
+    --cukor-rozsa-vilagos: #ffb8cf;
+    --cukor-krem: #fff8f1;
+    --cukor-pasztell: #fde4ec;
+
+    --bs-primary: #d6336c;
+    --bs-primary-rgb: 214, 51, 108;
+    --bs-link-color: #b02a5b;
+    --bs-link-color-rgb: 176, 42, 91;
+    --bs-link-hover-color: #8c2149;
+    --bs-link-hover-color-rgb: 140, 33, 73;
+}
+
+body {
+    background-color: var(--cukor-krem);
+    color: #3b2a28;
+}
+
+h1, h2, h3, h4, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6, .navbar-brand {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+
+.bg-cukor { background-color: var(--cukor-csoki) !important; }
+.bg-pasztell { background-color: var(--cukor-pasztell) !important; }
+.text-primary { color: var(--cukor-rozsa) !important; }
+.text-rozsa-vilagos { color: var(--cukor-rozsa-vilagos) !important; }
+.bg-primary { background-color: var(--cukor-rozsa) !important; }
+
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--cukor-rozsa);
+    --bs-btn-border-color: var(--cukor-rozsa);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--cukor-rozsa-sotet);
+    --bs-btn-hover-border-color: var(--cukor-rozsa-sotet);
+    --bs-btn-focus-shadow-rgb: 214, 51, 108;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #8c2149;
+    --bs-btn-active-border-color: #8c2149;
+    --bs-btn-disabled-bg: var(--cukor-rozsa);
+    --bs-btn-disabled-border-color: var(--cukor-rozsa);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--cukor-rozsa);
+    --bs-btn-border-color: var(--cukor-rozsa);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--cukor-rozsa);
+    --bs-btn-hover-border-color: var(--cukor-rozsa);
+    --bs-btn-focus-shadow-rgb: 214, 51, 108;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--cukor-rozsa-sotet);
+    --bs-btn-active-border-color: var(--cukor-rozsa-sotet);
+}
+
+.nav-pills {
+    --bs-nav-pills-link-active-bg: var(--cukor-rozsa);
+    --bs-nav-link-color: var(--cukor-csoki);
+    --bs-nav-link-hover-color: var(--cukor-rozsa-sotet);
+}
+
+.form-control:focus, .form-select:focus, .form-check-input:focus {
+    border-color: var(--cukor-rozsa);
+    box-shadow: 0 0 0 .25rem rgba(214, 51, 108, .25);
+}
+.form-check-input:checked {
+    background-color: var(--cukor-rozsa);
+    border-color: var(--cukor-rozsa);
+}
+
+
+.navbar .navbar-brand { font-size: 1.6rem; color: #fff; }
+.navbar .navbar-brand i { color: var(--cukor-rozsa-vilagos); }
+.navbar .nav-link.active { color: #fff; box-shadow: inset 0 -3px 0 var(--cukor-rozsa); }
+
+
+.hero {
+    background: linear-gradient(135deg, var(--cukor-csoki) 0%, #7a3548 60%, var(--cukor-rozsa) 135%);
+    color: #fff;
+}
+.page-header {
+    background: linear-gradient(135deg, var(--cukor-csoki) 0%, #7a3548 70%, var(--cukor-rozsa) 140%);
+    border-bottom: 4px solid var(--cukor-rozsa);
+}
+
+.hero h1, .hero h2, .hero h3,
+.page-header h1, .page-header h2 {
+    color: #fff;
+}
+
+
+.feature-card {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 .5rem 1.5rem rgba(74, 44, 42, .08);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 .75rem 2rem rgba(74, 44, 42, .15);
+}
+.feature-icon {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: var(--cukor-pasztell);
+    color: var(--cukor-rozsa);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+}
+.stat-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--cukor-rozsa);
+}
+
+
+.table-cukor {
+    --bs-table-bg: var(--cukor-csoki);
+    --bs-table-color: #fff;
+    --bs-table-border-color: var(--cukor-csoki-vilagos);
+    --bs-table-striped-bg: var(--cukor-csoki);
+    --bs-table-striped-color: #fff;
+    --bs-table-hover-bg: var(--cukor-csoki);
+    --bs-table-hover-color: #fff;
+}
+.table-cukor th {
+    background-color: var(--cukor-csoki);
+    color: #fff;
+}
+.table-scroll { max-height: 600px; overflow-y: auto; }
+.table-scroll thead th { position: sticky; top: 0; z-index: 1; }
+
+
+.site-footer {
+    background-color: var(--cukor-csoki);
+    color: #f3e3dd;
+    border-top: 4px solid var(--cukor-rozsa);
+}
+.site-footer a { color: var(--cukor-rozsa-vilagos); }
+
+
+pre.kod {
+    background: #2b1a19;
+    color: #ffe9f1;
+    border-radius: .5rem;
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 0;
+}
