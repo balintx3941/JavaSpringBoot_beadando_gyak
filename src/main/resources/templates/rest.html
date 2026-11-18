@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('REST')}"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<nav th:replace="~{fragments :: nav('rest')}"></nav>
+<header th:replace="~{fragments :: pageheader('REST API')}"></header>
+
+<main class="container py-5 flex-grow-1">
+    <p class="text-center mb-5">
+        A sütemények kezeléséhez RESTful API áll rendelkezésre JSON formátumban.
+        Az adatok <strong>olvasása</strong> bárki számára elérhető, a <strong>létrehozás, módosítás és törlés</strong>
+        csak admin felhasználóval (HTTP Basic azonosítás) lehetséges.
+    </p>
+
+    <h2 class="h4 mb-3">Végpontok</h2>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped align-middle">
+            <thead class="table-cukor">
+            <tr><th>Metódus</th><th>URL</th><th>Leírás</th><th>Jogosultság</th></tr>
+            </thead>
+            <tbody>
+            <tr><td><span class="badge bg-success">GET</span></td><td><code>/api/sutik</code></td><td>Összes sütemény listázása</td><td>bárki</td></tr>
+            <tr><td><span class="badge bg-success">GET</span></td><td><code>/api/sutik/{id}</code></td><td>Egy sütemény lekérése (404, ha nincs ilyen)</td><td>bárki</td></tr>
+            <tr><td><span class="badge bg-primary">POST</span></td><td><code>/api/sutik</code></td><td>Új sütemény létrehozása (201 Created)</td><td>admin</td></tr>
+            <tr><td><span class="badge bg-warning text-dark">PUT</span></td><td><code>/api/sutik/{id}</code></td><td>Sütemény módosítása</td><td>admin</td></tr>
+            <tr><td><span class="badge bg-danger">DELETE</span></td><td><code>/api/sutik/{id}</code></td><td>Sütemény törlése (204 No Content)</td><td>admin</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 class="h4 mb-3">Kipróbálás a böngészőben</h2>
+    <div class="card feature-card mb-5">
+        <div class="card-body">
+            <button id="probaGomb" type="button" class="btn btn-primary mb-3">
+                <i class="bi bi-play-fill me-1"></i>GET /api/sutik/1
+            </button>
+            <pre class="kod" id="valasz">Kattints a gombra a válasz megtekintéséhez.</pre>
+        </div>
+    </div>
+
+    <h2 class="h4 mb-3">cURL példák</h2>
+    <p class="text-muted">
+        Az admin felhasználónevét és jelszavát cseréld a sajátodra. Windows PowerShellben a <code>curl</code>
+        helyett <code>curl.exe</code> kell, és a JSON idézőjeleit <code>\"</code> formában kell megadni.
+    </p>
+
+    <h3 class="h6 mt-4">Összes sütemény</h3>
+    <pre class="kod"><code>curl <span th:text="${baseUrl}">http://localhost:8080</span>/api/sutik</code></pre>
+
+    <h3 class="h6 mt-4">Egy sütemény</h3>
+    <pre class="kod"><code>curl <span th:text="${baseUrl}">http://localhost:8080</span>/api/sutik/1</code></pre>
+
+    <h3 class="h6 mt-4">Új sütemény létrehozása</h3>
+    <pre class="kod"><code>curl -u admin:JELSZO -X POST <span th:text="${baseUrl}">http://localhost:8080</span>/api/sutik \
+  -H "Content-Type: application/json" \
+  -d '{"nev": "Teszt torta", "tipus": "torta", "dijazott": false}'</code></pre>
+
+    <h3 class="h6 mt-4">Módosítás</h3>
+    <pre class="kod"><code>curl -u admin:JELSZO -X PUT <span th:text="${baseUrl}">http://localhost:8080</span>/api/sutik/140 \
+  -H "Content-Type: application/json" \
+  -d '{"nev": "Teszt torta (módosítva)", "tipus": "torta", "dijazott": true}'</code></pre>
+
+    <h3 class="h6 mt-4">Törlés</h3>
+    <pre class="kod"><code>curl -u admin:JELSZO -X DELETE <span th:text="${baseUrl}">http://localhost:8080</span>/api/sutik/140</code></pre>
+</main>
+
+<div th:replace="~{fragments :: footer}"></div>
+<th:block th:replace="~{fragments :: scripts}"></th:block>
+<script th:inline="javascript">
+    const apiUrl = /*[[@{/api/sutik/1}]]*/ '/api/sutik/1';
+    document.getElementById('probaGomb').addEventListener('click', async function () {
+        const out = document.getElementById('valasz');
+        out.textContent = 'Betöltés...';
+        try {
+            const r = await fetch(apiUrl);
+            const j = await r.json();
+            out.textContent = r.status + ' ' + r.statusText + '\n' + JSON.stringify(j, null, 2);
+        } catch (e) {
+            out.textContent = 'Hiba: ' + e;
+        }
+    });
+</script>
+</body>
+</html>
